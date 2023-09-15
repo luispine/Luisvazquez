@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WorkExperienceService } from '../servises/work-experience.service';
 
 @Component({
   selector: 'app-work-experience',
@@ -7,9 +8,14 @@ import { Component } from '@angular/core';
 })
 export class WorkExperienceComponent {
   WorkExperience : Array<any> = [];
-  constructor() {}
+  constructor(private service: WorkExperienceService) {}
   ngOnInit(): void {
-    let work1={
+    this.service.getworkExperience().subscribe(data => {this.WorkExperience=data
+    console.log(data)
+    })
+
+
+   /* let work1={
       fecha : "2018-2022",
       ubicacion : "Cordoba, Ver",
       puesto: "Estudiante",
@@ -17,7 +23,7 @@ export class WorkExperienceComponent {
         {descripcion: "Pasar la prepa"}
       ]
     };
-    this.WorkExperience.push(work1);
+    this.WorkExperience.push(work1);}*/
   }
 
 }
